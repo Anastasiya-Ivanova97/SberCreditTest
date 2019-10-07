@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class StartPage extends PageSettings {
 
-    @FindBy(xpath = "/html/body/header/div[2]/div/div[2]/div[2]/div[2]/form/div/div/div/input")
+    @FindBy(xpath = "//form[@class='main-search-form']/descendant::input")
     WebElement searchString;
 
     @FindBy(xpath = "//span[@class='ui-input-search__icon ui-input-search__icon_search']")
@@ -31,7 +31,6 @@ public class StartPage extends PageSettings {
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", searchString);
         executor.executeScript("arguments[0].value = '" + searchItem + "'", searchString);
-        //searchString.sendKeys(searchItem);
         executor.executeScript("arguments[0].click();", searchButton);
     }
 
