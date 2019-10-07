@@ -7,12 +7,11 @@ public class Initialization {
     private static WebDriver driver;
     public static TestProperties testProperties = TestProperties.getInstance();
 
-    public static void initialize() throws InterruptedException {
+    public static void initialize() {
         System.setProperty("webdriver.chrome.driver", testProperties.getProperty("chromedriver"));
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(testProperties.getProperty("url"));
-       // driver.manage().timeouts().pageLoadTimeout(Integer.parseInt(testProperties.getProperty("timeout.pageLoad")), TimeUnit.SECONDS);
     }
 
     public static WebDriver getDriver(){
