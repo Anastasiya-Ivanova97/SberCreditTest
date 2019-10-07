@@ -1,9 +1,13 @@
-import com.sun.xml.internal.ws.policy.sourcemodel.AssertionData;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.junit.Assert;
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.concurrent.TimeUnit;
 
 public class BasketPage extends PageSettings{
     Integer temp;
@@ -56,8 +60,10 @@ public class BasketPage extends PageSettings{
         removeItem.click();
     }
      public void checkAfterRemove(ItemPage itemPage){
+        int sum1 = itemPage.getBefore()+itemPage.getUpdated();
+        int sum2 = itemPage.toNumber(sum);
 
-        Assert.assertTrue(itemPage.getBefore().intValue()+itemPage.getUpdated().intValue()==itemPage.toNumber(sum).intValue());
+        Assert.assertTrue(sum1==sum2);
      }
 
      public void addItems(Integer count) {
