@@ -1,3 +1,5 @@
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -50,6 +52,14 @@ public class ItemPage extends PageSettings{
         }
         return Integer.parseInt(full);
     }
+    public Integer toNumber(String string) {
+        String[] parts = string.split("\\s");
+        String full = "";
+        for (int i = 0; i < parts.length ; i++) {
+            full+= parts[i];
+        }
+        return Integer.parseInt(full);
+    }
 
     public void changeGuarantee() {
         wait.until(ExpectedConditions.elementToBeClickable(guarantee));
@@ -72,7 +82,6 @@ public class ItemPage extends PageSettings{
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", searchString);
         executor.executeScript("arguments[0].value = '" + keys + "'", searchString);
-        //searchString.sendKeys(searchItem);
         executor.executeScript("arguments[0].click();", searchButton);
     }
     public void buy() {
@@ -98,12 +107,14 @@ public class ItemPage extends PageSettings{
         return newItem;
     }
 
-    /* public void checkTotalPrice() {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            WebElement element = (WebElement) js.executeScript("return document.getElementById('header-search');");
-            Integer total = toNumber(element.findElement(By.xpath("(//a[@href='/order/begin/']/descendant::span[3])")));
+     public void checkTotalPrice() {
+            String html = "<span data-of=\"totalPrice\">33 278</span>";
+            Document doc = Jsoup.parse(html);
+            String text = doc.body().text();
+            Integer sum = toNumber(text);
+            System.out.println(sum.equals(before+updated+newItem) ? "Сумма верна" : "Сумма неверна");
         }
-        */
+
    public void goToBasket() {
        button.click();
    }
