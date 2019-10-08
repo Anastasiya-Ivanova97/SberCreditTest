@@ -12,6 +12,7 @@ public class Initialization {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(testProperties.getProperty("url"));
+        driver.manage().timeouts().pageLoadTimeout(Integer.parseInt(testProperties.getProperty("timeout.pageLoad")), TimeUnit.SECONDS);
     }
 
     public static WebDriver getDriver(){

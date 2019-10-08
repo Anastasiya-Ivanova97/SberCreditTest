@@ -22,7 +22,7 @@ public class DNSTest {
         itemPage.buyAndSearchAnotherItem("detroit");
         itemPage.setNewItem();
         itemPage.buy();
-        //itemPage.checkTotalPrice();
+        itemPage.checkTotalPrice();
         itemPage.goToBasket();
         BasketPage basketPage = new BasketPage();
         basketPage.checkGuarantee();

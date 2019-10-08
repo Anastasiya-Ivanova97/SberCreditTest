@@ -1,11 +1,10 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class StartPage extends PageSettings {
 
@@ -27,7 +26,6 @@ public class StartPage extends PageSettings {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
     public void search(String searchItem) {
-        System.out.println(driver.getCurrentUrl()+" "+driver.getTitle());
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", searchString);
         executor.executeScript("arguments[0].value = '" + searchItem + "'", searchString);
